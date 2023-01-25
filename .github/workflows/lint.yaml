@@ -1,0 +1,23 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Install golangci-lint
+      run: |
+        VERSION=$(curl --silent "https://api.github.com/repos/golangci/golangci-lint/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        curl -sSfL "https://raw.githubusercontent.com/golangci/golangci-lint/${VERSION}/install.sh" | sh -s -- -b $(go env GOPATH)/bin ${VERSION}
+    - name: Run golangci-lint
+      run: golangci-lint run

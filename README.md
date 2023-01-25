@@ -46,3 +46,8 @@ In terms of optimization, the script could be improved by reducing the number of
 8. Implement `Go` Code `lint` and some basic workflows for `GitHub` and `Gitlab`. - *Nice-to-have*
 9. Maybe later on, implement individual `Visualization` purely with `Go` over some REST API Call. (eg. `Go-Echarts`) - *Nice-to-have*
 10. Include Deployment of `InfluxDB 2.x` and `Grafana` too with complete configuration (Out-of-the-box solution).  - *Good-to-have*
+
+
+# Updates :
+
+- 25.1.2023 - started to work.

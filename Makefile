@@ -1,5 +1,13 @@
-APP_NAME=go-vbo365-mon
-PACKAGE_NAME=github.com/patrikcze/go-vbo365
+# This should match the version defined in .github/workflows/lint.yaml
+WANTED_LINT_VERSION := 1.50.1
+APP_NAME := go-vbo365-mon
+PACKAGE_NAME := github.com/patrikcze/go-vbo365
+LINT_VERSION := $(shell golangci-lint version | cut -d' ' -f4)
+HAS_LINT := $(shell which golangci-lint)
+
+#
+INSTALL_LINT_PAGE := "https://golangci-lint.run/usage/install/"
+BAD_LINT_MSG := "Missing golangci-lint version $(WANTED_LINT_VERSION). Visit $(INSTALL_LINT_PAGE) for instructions on how to install"
 
 # Go parameters
 GOCMD=go
