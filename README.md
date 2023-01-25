@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/patrikcze/go-vbo365.svg?branch=master)](https://travis-ci.org/patrikcze/go-vbo365)
 [![GitHub version](https://badge.fury.io/gh/patrikcze%2Fgo-vbo365.svg)](https://badge.fury.io/gh/patrikcze%2Fgo-vbo365)
-
+[![Lint](https://github.com/patrikcze/go-vbo365/actions/workflows/lint.yaml/badge.svg)](https://github.com/patrikcze/go-vbo365/actions/workflows/lint.yaml)
 # go-vbo365
 This project is about to rewrite Bash script which has been developed by **jorgedlcruz**  into Go Lang. Possibly to be able to deploy this Go Binary into Docker Container and deploy complete solution to Docker or Kubernetes.  Let's see how well it goes.
 
