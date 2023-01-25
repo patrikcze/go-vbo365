@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/patrikcze/go-vbo365.svg?branch=master)](https://travis-ci.org/patrikcze/go-vbo365)
+[![Build](https://img.shields.io/github/workflow/status/patrikcze/go-vbo365/build?label=build&logo=github&style=flat-square)](https://github.com/patrikcze/go-vbo365/actions?query=workflow%3Abuild)
 [![GitHub version](https://badge.fury.io/gh/patrikcze%2Fgo-vbo365.svg)](https://badge.fury.io/gh/patrikcze%2Fgo-vbo365)
 [![Lint](https://github.com/patrikcze/go-vbo365/actions/workflows/lint.yaml/badge.svg)](https://github.com/patrikcze/go-vbo365/actions/workflows/lint.yaml)
 # go-vbo365
