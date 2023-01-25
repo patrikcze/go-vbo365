@@ -26,3 +26,20 @@ One of the key things to note is that the script **`relies heavily`** on `enviro
 The script also makes use of a number of command line tools such as `jq`, `awk`, `curl`, and `echo` to parse and manipulate the data, and `for` and `if` statements to iterate over the collected data and perform different actions based on the data.
 
 In terms of optimization, the script could be improved by reducing the number of API calls made to the Veeam Backup for Microsoft 365 server and by making use of more efficient data manipulation techniques. Additionally, error handling and logging could be added to improve the script's robustness and troubleshooting capabilities.
+
+# Project Goal
+
+1. Goal here is to rewrite script into `Go` Language (i'm total beginner ;-)).
+2. Avoid using `jq`, `awk`, `curl` or other cmd line tools, to have it run purely as a `binary`.
+3. Avoid using `Crontab` or K8S `crontabjobs` (eg. implement `time.Tick` function).
+4. Stick with current setup using `Environment variables` (eg. can be helpful in case of K8S deployment)
+    - Create configuration file with parameters for `"Schedule"` every 30minutes, 1h, or so. 
+    - Also make some of the `Environment variables` being able to be configured within configuration file (eg. Binary would or could run Stand-alone)
+5. `Build` an image with this `Go Binary` (using `multi-stage` docker image build process)
+    - save an amount of space (possibly use some basic Alpine Linux images)
+    - consider using it as `commandline tool` too (eg. Using Go `Cobra/Viper`)
+6. Use type `Sructures` where possible instead of parsing `JSON`.
+7. Make it `updatable` in terms of REST API changes on both sides `Veeam M365 API` and `InfluxDB API`. - *Nice-to-have*
+8. Implement `Go` Code `lint` and some basic workflows for `GitHub` and `Gitlab`. - *Nice-to-have*
+9. Maybe later on, implement individual `Visualization` purely with `Go` over some REST API Call. (eg. `Go-Echarts`) - *Nice-to-have*
+10. Include Deployment of `InfluxDB 2.x` and `Grafana` too with complete configuration (Out-of-the-box solution).  - *Good-to-have*
