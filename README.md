@@ -1,5 +1,8 @@
+[![Build Status](https://travis-ci.org/patrikcze/go-vbo365.svg?branch=master)](https://travis-ci.org/patrikcze/go-vbo365)
+[![GitHub version](https://badge.fury.io/gh/patrikcze%2Fgo-vbo365.svg)](https://badge.fury.io/gh/patrikcze%2Fgo-vbo365)
+
 # go-vbo365
-This project is about to rewrite Bash script which has been developed by **jorgedlcruz**  into Go Lang. Possibly to be able to deploy this Go Binary into Docker Container and deploy complete solution to Docker or Kubernetes.  Let's see how well it goes. 
+This project is about to rewrite Bash script which has been developed by **jorgedlcruz**  into Go Lang. Possibly to be able to deploy this Go Binary into Docker Container and deploy complete solution to Docker or Kubernetes.  Let's see how well it goes.
 
 # Source Jorge's Bash script description
 
@@ -33,7 +36,7 @@ In terms of optimization, the script could be improved by reducing the number of
 2. Avoid using `jq`, `awk`, `curl` or other cmd line tools, to have it run purely as a `binary`.
 3. Avoid using `Crontab` or K8S `crontabjobs` (eg. implement `time.Tick` function).
 4. Stick with current setup using `Environment variables` (eg. can be helpful in case of K8S deployment)
-    - Create configuration file with parameters for `"Schedule"` every 30minutes, 1h, or so. 
+    - Create configuration file with parameters for `"Schedule"` every 30minutes, 1h, or so.
     - Also make some of the `Environment variables` being able to be configured within configuration file (eg. Binary would or could run Stand-alone)
 5. `Build` an image with this `Go Binary` (using `multi-stage` docker image build process)
     - save an amount of space (possibly use some basic Alpine Linux images)
