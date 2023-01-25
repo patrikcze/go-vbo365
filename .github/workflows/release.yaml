@@ -1,95 +1,95 @@
-name: Create Release
+# name: Create Release
 
-on:
-  push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+# on:
+#   push:
+#     # Sequence of patterns matched against refs/tags
+#     tags:
+#       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
-jobs:
-  build-and-release:
-    runs-on: self-hosted
+# jobs:
+#   build-and-release:
+#     runs-on: self-hosted
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v3
 
-    - name: Set up Go
-      run: |
-        export GOOS=linux
-        export GOARCH=amd64
-        export CGO_ENABLED=0
+#     - name: Set up Go
+#       run: |
+#         export GOOS=linux
+#         export GOARCH=amd64
+#         export CGO_ENABLED=0
 
-    - name: Build linux/amd64
-      run: make build
+#     - name: Build linux/amd64
+#       run: make build
 
-    - name: Create release for linux/amd64
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}-linux-amd64
-        release_name: Release ${{ github.ref }} for linux/amd64
-        draft: false
-        prerelease: false
-        assets: dist/*
+#     - name: Create release for linux/amd64
+#       uses: actions/create-release@v1
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       with:
+#         tag_name: ${{ github.ref }}-linux-amd64
+#         release_name: Release ${{ github.ref }} for linux/amd64
+#         draft: false
+#         prerelease: false
+#         assets: dist/*
 
-    - name: Set up Go
-      run: |
-        export GOOS=darwin
-        export GOARCH=amd64
-        export CGO_ENABLED=0
+#     - name: Set up Go
+#       run: |
+#         export GOOS=darwin
+#         export GOARCH=amd64
+#         export CGO_ENABLED=0
 
-    - name: Build darwin/amd64
-      run: make build
+#     - name: Build darwin/amd64
+#       run: make build
 
-    - name: Create release for darwin/amd64
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}-darwin-amd64
-        release_name: Release ${{ github.ref }} for darwin/amd64
-        draft: false
-        prerelease: false
-        assets: dist/*
+#     - name: Create release for darwin/amd64
+#       uses: actions/create-release@v1
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       with:
+#         tag_name: ${{ github.ref }}-darwin-amd64
+#         release_name: Release ${{ github.ref }} for darwin/amd64
+#         draft: false
+#         prerelease: false
+#         assets: dist/*
 
-    - name: Set up Go
-      run: |
-        export GOOS=linux
-        export GOARCH=arm64
-        export CGO_ENABLED=0
+#     - name: Set up Go
+#       run: |
+#         export GOOS=linux
+#         export GOARCH=arm64
+#         export CGO_ENABLED=0
 
-    - name: Build linux/arm64
-      run: make build
+#     - name: Build linux/arm64
+#       run: make build
 
-    - name: Create release for linux/arm64
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}-linux-arm64
-        release_name: Release ${{ github.ref }} for linux/arm64
-        draft: false
-        prerelease: false
-        assets: dist/*
+#     - name: Create release for linux/arm64
+#       uses: actions/create-release@v1
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       with:
+#         tag_name: ${{ github.ref }}-linux-arm64
+#         release_name: Release ${{ github.ref }} for linux/arm64
+#         draft: false
+#         prerelease: false
+#         assets: dist/*
 
-    - name: Set up Go
-      run: |
-        export GOOS=windows
-        export GOARCH=amd64
-        export CGO_ENABLED=0
+#     - name: Set up Go
+#       run: |
+#         export GOOS=windows
+#         export GOARCH=amd64
+#         export CGO_ENABLED=0
 
-    - name: Build windows/amd64
-      run: make build
+#     - name: Build windows/amd64
+#       run: make build
 
-    - name: Create release for windows/amd64
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}-windows-amd64
-        release_name: Release ${{ github.ref }} for windows/amd64
-        draft: false
-        prerelease: false
-        assets: dist/*
+#     - name: Create release for windows/amd64
+#       uses: actions/create-release@v1
+#       env:
+#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       with:
+#         tag_name: ${{ github.ref }}-windows-amd64
+#         release_name: Release ${{ github.ref }} for windows/amd64
+#         draft: false
+#         prerelease: false
+#         assets: dist/*
