@@ -51,3 +51,5 @@ In terms of optimization, the script could be improved by reducing the number of
 # Updates :
 
 - 25.1.2023 - started to work.
+- 26.1.2023 - Added new branch "development" 
+- 26.1.2023 - Created JSON structure for VBO365 ./internal/json/json.go.
