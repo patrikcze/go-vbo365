@@ -1,5 +1,5 @@
 // JSON Response structures for Veeam VBO365
-// 
+//
 // Versions : 6.1.0.438
 package json
 
@@ -19,14 +19,24 @@ type vbo365Token struct {
 // Structure JSON
 // Reponse GET /v6/Organizations
 type vbo365Organizations []struct {
-	IsTeamsOnline          bool `json:"isTeamsOnline"`
-	IsTeamsChatsOnline     bool `json:"isTeamsChatsOnline"`
+	IsTeamsOnline          bool   `json:"isTeamsOnline"`
+	IsTeamsChatsOnline     bool   `json:"isTeamsChatsOnline"`
+	ConfigureApplication   bool   `json:"configureApplication"`
+	UserCode               string `json:"userCode"`
+	NewApplicationName     string `json:"newApplicationName"`
 	ExchangeOnlineSettings struct {
 		UseApplicationOnlyAuth           bool   `json:"useApplicationOnlyAuth"`
+		OfficeOrganizationName           string `json:"officeOrganizationName"`
+		SharePointSaveAllWebParts        bool   `json:"sharePointSaveAllWebParts"`
 		Account                          string `json:"account"`
+		Password                         string `json:"password"`
 		GrantAdminAccess                 bool   `json:"grantAdminAccess"`
 		UseMfa                           bool   `json:"useMfa"`
+		UseCustomVeeamAADApplication     bool   `json:"useCustomVeeamAADApplication"`
 		ApplicationID                    string `json:"applicationId"`
+		ApplicationSecret                string `json:"applicationSecret"`
+		ApplicationCertificate           string `json:"applicationCertificate"`
+		ApplicationCertificatePassword   string `json:"applicationCertificatePassword"`
 		ApplicationCertificateThumbprint string `json:"applicationCertificateThumbprint"`
 	} `json:"exchangeOnlineSettings"`
 	SharePointOnlineSettings struct {
@@ -34,9 +44,14 @@ type vbo365Organizations []struct {
 		OfficeOrganizationName           string `json:"officeOrganizationName"`
 		SharePointSaveAllWebParts        bool   `json:"sharePointSaveAllWebParts"`
 		Account                          string `json:"account"`
+		Password                         string `json:"password"`
 		GrantAdminAccess                 bool   `json:"grantAdminAccess"`
 		UseMfa                           bool   `json:"useMfa"`
+		UseCustomVeeamAADApplication     bool   `json:"useCustomVeeamAADApplication"`
 		ApplicationID                    string `json:"applicationId"`
+		ApplicationSecret                string `json:"applicationSecret"`
+		ApplicationCertificate           string `json:"applicationCertificate"`
+		ApplicationCertificatePassword   string `json:"applicationCertificatePassword"`
 		ApplicationCertificateThumbprint string `json:"applicationCertificateThumbprint"`
 	} `json:"sharePointOnlineSettings"`
 	IsExchangeOnline   bool      `json:"isExchangeOnline"`
@@ -50,33 +65,33 @@ type vbo365Organizations []struct {
 	FirstBackuptime    time.Time `json:"firstBackuptime"`
 	LastBackuptime     time.Time `json:"lastBackuptime"`
 	Links              struct {
-		Self struct {
-			Href string `json:"href"`
-		} `json:"self"`
-		Jobs struct {
-			Href string `json:"href"`
-		} `json:"jobs"`
-		Groups struct {
-			Href string `json:"href"`
-		} `json:"groups"`
-		Users struct {
-			Href string `json:"href"`
-		} `json:"users"`
-		Sites struct {
-			Href string `json:"href"`
-		} `json:"sites"`
-		Teams struct {
-			Href string `json:"href"`
-		} `json:"teams"`
-		UsedRepositories struct {
-			Href string `json:"href"`
-		} `json:"usedRepositories"`
-		RbacRoles struct {
-			Href string `json:"href"`
-		} `json:"rbacRoles"`
 	} `json:"_links"`
 	Actions struct {
 	} `json:"_actions"`
+	IsSharepoint       bool `json:"isSharepoint"`
+	SharepointSettings struct {
+		ServerName                   string `json:"serverName"`
+		Username                     string `json:"username"`
+		Password                     string `json:"password"`
+		UseSSL                       bool   `json:"useSSL"`
+		SkipCAverification           bool   `json:"skipCAverification"`
+		SkipCommonnameverification   bool   `json:"skipCommonnameverification"`
+		SkipRevocationcheck          bool   `json:"skipRevocationcheck"`
+		ServerPort                   int    `json:"serverPort"`
+		GrantAccesstositecollections bool   `json:"grantAccesstositecollections"`
+	} `json:"sharepointSettings"`
+	IsExchange       bool `json:"isExchange"`
+	ExchangeSettings struct {
+		ServerName                 string `json:"serverName"`
+		Username                   string `json:"username"`
+		Password                   string `json:"password"`
+		UseSSL                     bool   `json:"useSSL"`
+		SkipCAverification         bool   `json:"skipCAverification"`
+		SkipCommonnameverification bool   `json:"skipCommonnameverification"`
+		SkipRevocationcheck        bool   `json:"skipRevocationcheck"`
+		GrantImpersonation         bool   `json:"grantImpersonation"`
+		ConfigureThrottlingpolicy  bool   `json:"configureThrottlingpolicy"`
+	} `json:"exchangeSettings"`
 }
 
 // Structure JSON
