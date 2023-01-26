@@ -1,3 +1,6 @@
+// JSON Response structures for Veeam VBO365
+// 
+// Versions : 6.1.0.438
 package json
 
 import "time"
