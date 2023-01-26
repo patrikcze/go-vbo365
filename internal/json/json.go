@@ -214,61 +214,267 @@ type vbo365Proxies []struct {
 // Structure JSON
 // Reponse GET /v6/Jobs
 type vbo365Jobs []struct {
-	Description    string `json:"description"`
-	BackupType     string `json:"backupType"`
+	Description   string `json:"description"`
+	BackupType    string `json:"backupType"`
+	RunNow        bool   `json:"runNow"`
+	SelectedItems []struct {
+		Type    string   `json:"type"`
+		Folders []string `json:"folders"`
+		ID      string   `json:"id"`
+		Links   struct {
+		} `json:"_links"`
+		Mailbox        bool `json:"mailbox"`
+		OneDrive       bool `json:"oneDrive"`
+		ArchiveMailbox bool `json:"archiveMailbox"`
+		Sites          bool `json:"sites"`
+		Teams          bool `json:"teams"`
+		TeamsChats     bool `json:"teamsChats"`
+		Site           struct {
+			ID                  string `json:"id"`
+			URL                 string `json:"url"`
+			ParentURL           string `json:"parentUrl"`
+			Name                string `json:"name"`
+			IsCloud             bool   `json:"isCloud"`
+			IsPersonal          bool   `json:"isPersonal"`
+			Title               string `json:"title"`
+			SiteCollectionError string `json:"siteCollectionError"`
+			Links               struct {
+			} `json:"_links"`
+		} `json:"site"`
+		Team struct {
+			ID          string `json:"id"`
+			DisplayName string `json:"displayName"`
+			Description string `json:"description"`
+			Mail        string `json:"mail"`
+			Links       struct {
+			} `json:"_links"`
+		} `json:"team"`
+		Chats bool `json:"chats"`
+		User  struct {
+			ID           string `json:"id"`
+			DisplayName  string `json:"displayName"`
+			Name         string `json:"name"`
+			Type         string `json:"type"`
+			LocationType string `json:"locationType"`
+			Links        struct {
+			} `json:"_links"`
+		} `json:"user"`
+		PersonalSite bool `json:"personalSite"`
+		Group        struct {
+			ID           string `json:"id"`
+			DisplayName  string `json:"displayName"`
+			Name         string `json:"name"`
+			ManagedBy    string `json:"managedBy"`
+			Site         string `json:"site"`
+			Type         string `json:"type"`
+			LocationType string `json:"locationType"`
+			Links        struct {
+			} `json:"_links"`
+		} `json:"group"`
+		Members              bool `json:"members"`
+		MemberMailbox        bool `json:"memberMailbox"`
+		MemberArchiveMailbox bool `json:"memberArchiveMailbox"`
+		MemberOnedrive       bool `json:"memberOnedrive"`
+		MemberSite           bool `json:"memberSite"`
+		GroupSite            bool `json:"groupSite"`
+	} `json:"selectedItems"`
+	ExcludedItems []struct {
+		Type    string   `json:"type"`
+		Folders []string `json:"folders"`
+		ID      string   `json:"id"`
+		Links   struct {
+		} `json:"_links"`
+		Mailbox        bool `json:"mailbox"`
+		OneDrive       bool `json:"oneDrive"`
+		ArchiveMailbox bool `json:"archiveMailbox"`
+		Sites          bool `json:"sites"`
+		Teams          bool `json:"teams"`
+		TeamsChats     bool `json:"teamsChats"`
+		Site           struct {
+			ID                  string `json:"id"`
+			URL                 string `json:"url"`
+			ParentURL           string `json:"parentUrl"`
+			Name                string `json:"name"`
+			IsCloud             bool   `json:"isCloud"`
+			IsPersonal          bool   `json:"isPersonal"`
+			Title               string `json:"title"`
+			SiteCollectionError string `json:"siteCollectionError"`
+			Links               struct {
+			} `json:"_links"`
+		} `json:"site"`
+		Team struct {
+			ID          string `json:"id"`
+			DisplayName string `json:"displayName"`
+			Description string `json:"description"`
+			Mail        string `json:"mail"`
+			Links       struct {
+			} `json:"_links"`
+		} `json:"team"`
+		Chats bool `json:"chats"`
+		User  struct {
+			ID           string `json:"id"`
+			DisplayName  string `json:"displayName"`
+			Name         string `json:"name"`
+			Type         string `json:"type"`
+			LocationType string `json:"locationType"`
+			Links        struct {
+			} `json:"_links"`
+		} `json:"user"`
+		PersonalSite bool `json:"personalSite"`
+		Group        struct {
+			ID           string `json:"id"`
+			DisplayName  string `json:"displayName"`
+			Name         string `json:"name"`
+			ManagedBy    string `json:"managedBy"`
+			Site         string `json:"site"`
+			Type         string `json:"type"`
+			LocationType string `json:"locationType"`
+			Links        struct {
+			} `json:"_links"`
+		} `json:"group"`
+		Members              bool `json:"members"`
+		MemberMailbox        bool `json:"memberMailbox"`
+		MemberArchiveMailbox bool `json:"memberArchiveMailbox"`
+		MemberOnedrive       bool `json:"memberOnedrive"`
+		MemberSite           bool `json:"memberSite"`
+		GroupSite            bool `json:"groupSite"`
+	} `json:"excludedItems"`
 	SchedulePolicy struct {
-		ScheduleEnabled     bool   `json:"scheduleEnabled"`
-		BackupWindowEnabled bool   `json:"backupWindowEnabled"`
-		Type                string `json:"type"`
-		DailyType           string `json:"dailyType"`
-		DailyTime           string `json:"dailyTime"`
-		RetryEnabled        bool   `json:"retryEnabled"`
-		RetryNumber         int    `json:"retryNumber"`
-		RetryWaitInterval   int    `json:"retryWaitInterval"`
-	} `json:"schedulePolicy,omitempty"`
+		ScheduleEnabled      bool `json:"scheduleEnabled"`
+		BackupWindowEnabled  bool `json:"backupWindowEnabled"`
+		BackupWindowSettings struct {
+			BackupWindow []bool `json:"backupWindow"`
+			MinuteOffset int    `json:"minuteOffset"`
+		} `json:"backupWindowSettings"`
+		PeriodicallyWindowSettings struct {
+			BackupWindow []bool `json:"backupWindow"`
+			MinuteOffset int    `json:"minuteOffset"`
+		} `json:"periodicallyWindowSettings"`
+		PeriodicallyOffsetMinutes int    `json:"periodicallyOffsetMinutes"`
+		Type                      string `json:"type"`
+		PeriodicallyEvery         string `json:"periodicallyEvery"`
+		DailyType                 string `json:"dailyType"`
+		DailyTime                 string `json:"dailyTime"`
+		RetryEnabled              bool   `json:"retryEnabled"`
+		RetryNumber               int    `json:"retryNumber"`
+		RetryWaitInterval         int    `json:"retryWaitInterval"`
+	} `json:"schedulePolicy"`
 	ID           string    `json:"id"`
 	RepositoryID string    `json:"repositoryId"`
 	Name         string    `json:"name"`
 	LastRun      time.Time `json:"lastRun"`
-	NextRun      time.Time `json:"nextRun,omitempty"`
+	NextRun      time.Time `json:"nextRun"`
 	IsEnabled    bool      `json:"isEnabled"`
 	LastStatus   string    `json:"lastStatus"`
 	Links        struct {
-		Self struct {
-			Href string `json:"href"`
-		} `json:"self"`
-		CopyJob struct {
-			Href string `json:"href"`
-		} `json:"copyJob"`
-		Organization struct {
-			Href string `json:"href"`
-		} `json:"organization"`
-		BackupRepository struct {
-			Href string `json:"href"`
-		} `json:"backupRepository"`
-		Jobsessions struct {
-			Href string `json:"href"`
-		} `json:"jobsessions"`
-		ExcludedItems struct {
-			Href string `json:"href"`
-		} `json:"excludedItems"`
-		SelectedItems struct {
-			Href string `json:"href"`
-		} `json:"selectedItems"`
 	} `json:"_links"`
-	SchedulePolicy0 struct {
-		ScheduleEnabled     bool   `json:"scheduleEnabled"`
-		BackupWindowEnabled bool   `json:"backupWindowEnabled"`
-		Type                string `json:"type"`
-		DailyType           string `json:"dailyType"`
-		DailyTime           string `json:"dailyTime"`
-		RetryEnabled        bool   `json:"retryEnabled"`
-	} `json:"schedulePolicy,omitempty"`
-	SchedulePolicy1 struct {
-		ScheduleEnabled     bool `json:"scheduleEnabled"`
-		BackupWindowEnabled bool `json:"backupWindowEnabled"`
-		RetryEnabled        bool `json:"retryEnabled"`
-		RetryNumber         int  `json:"retryNumber"`
-		RetryWaitInterval   int  `json:"retryWaitInterval"`
-	} `json:"schedulePolicy,omitempty"`
+}
+
+// Structure JSON
+// Reponse GET /v6/JobSessions
+type vbo365JobSessions struct {
+	Offset     int `json:"offset"`
+	Limit      int `json:"limit"`
+	TotalCount int `json:"totalCount"`
+	Links      struct {
+	} `json:"_links"`
+	Results []struct {
+		ID           string    `json:"id"`
+		Details      string    `json:"details"`
+		CreationTime time.Time `json:"creationTime"`
+		EndTime      time.Time `json:"endTime"`
+		RetryCount   int       `json:"retryCount"`
+		Progress     int       `json:"progress"`
+		Status       string    `json:"status"`
+		Statistics   struct {
+			ProcessingRateBytesPS int    `json:"processingRateBytesPS"`
+			ProcessingRateItemsPS int    `json:"processingRateItemsPS"`
+			ReadRateBytesPS       int    `json:"readRateBytesPS"`
+			WriteRateBytesPS      int    `json:"writeRateBytesPS"`
+			TransferredDataBytes  int    `json:"transferredDataBytes"`
+			ProcessedObjects      int    `json:"processedObjects"`
+			Bottleneck            string `json:"bottleneck"`
+		} `json:"statistics"`
+		Links struct {
+		} `json:"_links"`
+	} `json:"results"`
+	SetID string `json:"setId"`
+}
+
+// Structure JSON
+// Reponse GET /v6/RestorePortalSettings
+type vbo365RestorePortalSettings struct {
+	ApplicationID    string `json:"applicationId"`
+	MsalAuthorityURI string `json:"msalAuthorityUri"`
+	IsEnabled        bool   `json:"isEnabled"`
+}
+
+// Structure JSON
+// Reponse GET /v6/RbacRoles
+type vbo365RbacRoles []struct {
+	ID             string `json:"id"`
+	OrganizationID string `json:"organizationId"`
+	Name           string `json:"name"`
+	Description    string `json:"description"`
+	RoleType       string `json:"roleType"`
+	Links          struct {
+	} `json:"_links"`
+}
+
+// Structure JSON
+// Reponse GET /v6/RbacRoles/{roleId}/operators
+type vbo365RbacRoleOperators []struct {
+	Type string `json:"type"`
+	User struct {
+		ID          string `json:"id"`
+		DisplayName string `json:"displayName"`
+		Name        string `json:"name"`
+		Type        string `json:"type"`
+	} `json:"user"`
+	ID    string `json:"id"`
+	Links struct {
+	} `json:"_links"`
+	Site struct {
+		ID         string `json:"id"`
+		URL        string `json:"url"`
+		Title      string `json:"title"`
+		ParentURL  string `json:"parentUrl"`
+		IsCloud    bool   `json:"isCloud"`
+		IsPersonal bool   `json:"isPersonal"`
+	} `json:"site"`
+	Group struct {
+		ID          string `json:"id"`
+		DisplayName string `json:"displayName"`
+		Name        string `json:"name"`
+		Type        string `json:"type"`
+	} `json:"group"`
+}
+
+// Structure JSON
+// Reponse GET /v6/RbacRoles/{roleId}/selectedItems
+type vbo365RbacSelectedItems []struct {
+	Type string `json:"type"`
+	User struct {
+		ID          string `json:"id"`
+		DisplayName string `json:"displayName"`
+		Name        string `json:"name"`
+		Type        string `json:"type"`
+	} `json:"user"`
+	ID    string `json:"id"`
+	Links struct {
+	} `json:"_links"`
+	Site struct {
+		ID         string `json:"id"`
+		URL        string `json:"url"`
+		Title      string `json:"title"`
+		ParentURL  string `json:"parentUrl"`
+		IsCloud    bool   `json:"isCloud"`
+		IsPersonal bool   `json:"isPersonal"`
+	} `json:"site"`
+	Group struct {
+		ID          string `json:"id"`
+		DisplayName string `json:"displayName"`
+		Name        string `json:"name"`
+		Type        string `json:"type"`
+	} `json:"group"`
 }
